@@ -3,14 +3,14 @@ import testMembers from"../page objects/createMemberPOM.js";
 
 describe('AccountCreation', ()=>{
   var data; 
-  //var teamMemberCreation;
+
   before(() =>{
 
     cy.visit("http://staging.corp.lauditor.com/login")
 
       cy.fixture('loginCredentials').then((data1)=>{
 
-      //const login = new Login();
+      
       Login.setUserName(data1.username)
       Login.setPassword(data1.password)
       Login.clickSubmit();
@@ -42,7 +42,7 @@ describe('AccountCreation', ()=>{
           cy.scrollTo('top');
           cy.wait(2000);
           testMembers.setTeamMemberName(data.memberDetails.tmName);
-          testMembers.setDesignation(data.memberDetails.desingation);
+          testMembers.setDesignation(data.memberDetails.designation);
           testMembers.setCurrencyRate(data.memberDetails.currencyRate);
           testMembers.setDefaultRate(data.memberDetails.defaultRate);
           testMembers.setEmail(data.memberDetails.email);
@@ -64,7 +64,7 @@ describe('AccountCreation', ()=>{
         
          // Account creation without assigning groups
 
-         it.only('createMemberWithoutGroups', ()=>{
+         it('createMemberWithoutGroups', ()=>{
           
             cy.reload();
             testMembers.groupsIconClick();
@@ -344,6 +344,134 @@ describe('AccountCreation', ()=>{
             testMembers.clickSaveBtn();
             testMembers.emailMismatchErrorMsg();
           })
+
+
+
+          // check wheather search box is working or not
+          it('checkSearchBox',()=>{
+
+            cy.reload();
+            testMembers.groupsIconClick();
+            cy.wait(2000);
+
+            testMembers.creatMemberBtnClick();
+            cy.wait(2000);
+            cy.scrollTo('top');
+            cy.wait(2000);
+            testMembers.setTeamMemberName(data.memberDetails12.tmName);
+            testMembers.setDesignation(data.memberDetails12.designation);
+            testMembers.setCurrencyRate(data.memberDetails12.currencyRate);
+            testMembers.setDefaultRate(data.memberDetails12.defaultRate);
+            testMembers.setEmail(data.memberDetails12.email);
+            testMembers.setConirmEmail(data.memberDetails12.confirmemail);
+            testMembers.clickAssignGroupPlusBtn();
+            testMembers.searchBarAssingnTMpage(data.memberDetails12.departmentName);
+            cy.wait(5000);
+            testMembers.DepartmentVisible(data.memberDetails12.assertDept);
+
+          })
+
+          //Clicking on Add Team members button in success popup
+
+          it('addTeamMemberBtn',()=>{
+
+            var selectDepts1 = [
+              data.selectDepartments1.Dept1,
+              data.selectDepartments1.Dept2,
+            ];
+            cy.reload();  
+            testMembers.groupsIconClick();
+            cy.wait(2000);
+            testMembers.creatMemberBtnClick();
+            cy.wait(2000);
+            cy.scrollTo('top');
+            cy.wait(2000);
+            testMembers.setTeamMemberName(data.memberDetails13.tmName);
+            testMembers.setDesignation(data.memberDetails13.designation);
+            testMembers.setCurrencyRate(data.memberDetails13.currencyRate);
+            testMembers.setDefaultRate(data.memberDetails13.defaultRate);
+            testMembers.setEmail(data.memberDetails13.email);
+            testMembers.setConirmEmail(data.memberDetails13.confirmemail);
+            testMembers.clickAssignGroupPlusBtn();
+            cy.wait(5000);
+            testMembers.SelectDepts(selectDepts1);
+            cy.wait(5000);
+            testMembers.clickSaveBtn();
+            cy.wait(5000);
+            testMembers.successAlertTextContainsTMName(data.memberDetails13.tmName);
+            cy.wait(2000);
+            testMembers.AddMemberBtn();
+            testMembers.TeamMemberInfoasset();
+          })
+
+          // Check the email and designation after creating a team member
+
+          it('emailDesignationCheck', ()=>{
+
+            cy.reload();  
+            testMembers.groupsIconClick();
+            cy.wait(2000);
+            testMembers.creatMemberBtnClick();
+            cy.wait(2000);
+            cy.scrollTo('top');
+            cy.wait(2000);
+            testMembers.setTeamMemberName(data.memberDetails14.tmName);
+            testMembers.setDesignation(data.memberDetails14.designation);
+            testMembers.setCurrencyRate(data.memberDetails14.currencyRate);
+            testMembers.setDefaultRate(data.memberDetails14.defaultRate);
+            testMembers.setEmail(data.memberDetails14.email);
+            testMembers.setConirmEmail(data.memberDetails14.confirmemail);
+            testMembers.clickSaveBtn();
+            cy.wait(5000);
+            testMembers.clickViewChangesBtn();
+            cy.wait(5000);
+            testMembers.emailAssertionInViewTMPage(data.memberDetails14.email);
+            cy.wait(5000);
+            testMembers.designationAssertionInViewTMPage(data.memberDetails14.designation);
+
+          })
+
+
+          it.only('departmentsAndDefaultRatecheck', ()=>{
+
+            var selectDepts2 = [
+              data.selectDepartments2.Dept1,
+              data.selectDepartments2.Dept2,
+            ];
+            testMembers.groupsIconClick();
+            testMembers.creatMemberBtnClick();            
+            cy.wait(2000);
+            testMembers.creatMemberBtnClick();
+            cy.wait(2000);
+            cy.scrollTo('top');
+            cy.wait(2000);
+            testMembers.setTeamMemberName(data.memberDetails15.tmName);
+            testMembers.setDesignation(data.memberDetails15.designation);
+            testMembers.setCurrencyRate(data.memberDetails15.currencyRate);
+            testMembers.setDefaultRate(data.memberDetails15.defaultRate);
+            testMembers.setEmail(data.memberDetails15.email);
+            testMembers.setConirmEmail(data.memberDetails15.confirmemail);
+            testMembers.clickAssignGroupPlusBtn();
+            testMembers.SelectDepts(selectDepts2);
+            cy.wait(5000);
+            testMembers.clickSaveBtn();
+            cy.wait(5000);
+            testMembers.successAlertTextContainsTMName(data.memberDetails15.tmName);
+            cy.wait(2000);
+            testMembers.clickViewChangesBtn();
+            cy.wait(2000);
+            testMembers.departmentsAssertionInViewTMPage(data.memberDetails15.dept1);
+            testMembers.departmentsAssertionInViewTMPage(data.memberDetails15.dept2);
+            testMembers.DefaultRateAssertionInViewTMPage(data.memberDetails15.defaultRate);
+
+            
+
+
+
+
+          })
+          
+
 
 })
 

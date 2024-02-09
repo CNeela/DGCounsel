@@ -3,7 +3,7 @@ class TeamMember
 
     
     webElements ={
-    clickGroupsIcon:()=> cy.get("img[src='assets/img/total.svg']"),
+    clickGroupsIcon:()=> cy.get( "img[src='assets/img/total.svg']"),
     clickCreateButton:()=>cy.get ( ".btn.btn-top[routerlink='/groups/create-member']"),
     txtTeamMemberName:()=>cy.get ("input[name='name']"),
     txtDesignation:()=>cy.get( "input[name='designation']"),
@@ -16,6 +16,10 @@ class TeamMember
     viewChanges:() =>cy.xpath("//button[text()='View Changes']"),  
     searchBox:() => cy.xpath("//input[@placeholder='Search Members']"),
     teamMemberAssert: () => cy.xpath("//tr//td[1]"),
+    emailAssertion:()=> cy.xpath("//tr//td[1]"),
+    designationAssert:()=> cy.xpath("//tr//td[2]"),
+    DepartmentsAssert:()=> cy.xpath("//tr//td[3]"),
+    defaultRateAssert:()=> cy.xpath("//tr//td[5]"),
     backBtn:() => cy.xpath("//button[@class='btn btn-default btnsave btnback']"),
     cancelBtn:()=> cy.xpath("//button[@class='btn btn-default btncancel']"),
     YesBtn:()=> cy.xpath("//button[@class='btn btn-default alertbtn alertbtnyes']"),
@@ -30,7 +34,10 @@ class TeamMember
     errorMsgforConfirmEmail:()=> cy.xpath("//div[contains(text(),'Confirm email is required')]"),
     emailExistInFirm:()=> cy.xpath("//div[@class='invalid-feedback']"),
     confirmEmailMismatchError:()=> cy.xpath("//div[contains(text(),'Confirm email does not match')]"),
-    successAlertText:()=> cy.get("div[class='modal-body'] div[class='alertext']")
+    successAlertText:()=> cy.get("div[class='modal-body'] div[class='alertext']"),
+    addTeamMembersBtn:()=> cy.xpath("//button[contains(text(),'Add Members')]"),
+    closeBtnSuccessPopup:()=> cy.xpath("//div[@class='iconclose']"),
+
 
     };
    
@@ -160,6 +167,48 @@ class TeamMember
       successAlertTextContainsTMName(tmName){
         this.webElements.successAlertText().should("contain", tmName);
       }
+
+      searchBarAssingnTMpage(departmentName){
+        this.webElements.searchBox().type(departmentName);
+      }
+      DepartmentVisible(assertDept){
+        cy.xpath(
+          "//div//div[text()='" + assertDept + "']").should("contain", assertDept)
+      }
+      diffDeptNotVisible(givenDepartment, searchDepartment){
+        let expDept = givenDepartment;
+        cy.xpath(
+          "//div//div[text()='" + searchDepartment + "']").then((x)=>{
+            let actDept = x.text();
+            expect(actDept).to.not.equal(expDept)
+
+          })
+      }
+      AddMemberBtn(){
+        this.webElements.addTeamMembersBtn().click();
+      }
+
+      closeBtnInSuccessPopup(){
+        this.webElements.closeBtnSuccessPopup().click();
+      }
+
+      emailAssertionInViewTMPage(email){
+        this.webElements.emailAssertion().should("contain", email);
+      }
+
+      designationAssertionInViewTMPage(designation){
+        this.webElements.designationAssert().should("contain", designation);
+      }
+
+      departmentsAssertionInViewTMPage(Dept){
+        this.webElements.DepartmentsAssert().should("contain", Dept);
+      }
+
+      DefaultRateAssertionInViewTMPage(defaultRate){
+        this.webElements.defaultRateAssert().should("contain", defaultRate);
+      }
+
+
 
 
 

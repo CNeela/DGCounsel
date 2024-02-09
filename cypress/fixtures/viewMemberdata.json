@@ -1,0 +1,19 @@
+{
+    "memberDetails":{
+    "tmName":"Jenny",
+    "changeName":"John",
+    "nameAssert":"John"
+    },
+    "memberDetails1":{
+    "tmName":"John",
+    "changeDesignation":"Lawyer"
+        
+},
+    "memberDetails2":{
+    "tmName":"John",
+    "changeEmail":"vasej19814@fkcod.com",
+    "changeConfirmEmail":"vasej19814@fkcod.com"
+        
+}
+
+}

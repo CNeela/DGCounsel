@@ -1,7 +1,7 @@
 {
     "memberDetails":{
     "tmName":"Ambasitor3",
-    "desingation":"Lawyer",
+    "designation":"Lawyer",
     "currencyRate":"IndianRupee(INR)",
     "defaultRate":"900",
     "email":"mawabam16132@grassdev.com",
@@ -104,10 +104,54 @@
     "defaultRate":"500",
     "email":"corpgrouphead@gmail.com",
     "confirmemail":"corpgrouphead12@gmail.com"
+},
+    "memberDetails12":{
+    "tmName":"Makesh",
+    "designation":"Auditor",
+    "currencyRate":"USDollar(USD)",
+    "defaultRate":"500",
+    "email":"yalepe4319@bitofee.com",
+    "confirmemail":"yalepe4319@bitofee.com",
+    "departmentName":"Public Department",
+    "assertDept":"Public Department"
+},
+    "memberDetails13":{
+    "tmName":"Makesh",
+    "designation":"Auditor",
+    "currencyRate":"USDollar(USD)",
+    "defaultRate":"500",
+    "email":"yalepe43192@bitofee.com",
+    "confirmemail":"yalepe43192@bitofee.com",
+    "departmentName":"Public Department"
+    
+},
+    "selectDepartments1": {
+    "Dept1": "Public Department",
+    "Dept2": "People department"    
+},
+    "memberDetails14":{
+    "tmName":"Jane",
+    "designation":"Auditor",
+    "currencyRate":"USDollar(USD)",
+    "defaultRate":"500",
+    "email":"palepe43192@bitofee.com",
+    "confirmemail":"palepe43192@bitofee.com"
+},
+    "memberDetails15":{
+    "tmName":"Jenny",
+    "designation":"Auditor",
+    "currencyRate":"USDollar(USD)",
+    "defaultRate":"1000",
+    "email":"jenny43192@bitofee.com",
+    "confirmemail":"jenny43192@bitofee.com",
+    "dept1":"Public Department",
+    "dept2":"People department"
+},
+    "selectDepartments2": {
+    "Dept1": "Public Department",
+    "Dept2": "People department"  
 }
 }
-
-
 
 
 
