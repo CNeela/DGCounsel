@@ -3,7 +3,7 @@ class TeamMember
 
     
     webElements ={
-    clickGroupsIcon:()=> cy.get( "img[src='assets/img/total.svg']"),
+    clickGroupsIcon:()=> cy.get("img[src='assets/img/total.svg']"),
     clickCreateButton:()=>cy.get ( ".btn.btn-top[routerlink='/groups/create-member']"),
     txtTeamMemberName:()=>cy.get ("input[name='name']"),
     txtDesignation:()=>cy.get( "input[name='designation']"),

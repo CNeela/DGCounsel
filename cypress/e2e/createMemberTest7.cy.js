@@ -25,7 +25,7 @@ describe('AccountCreation', ()=>{
   });
 });
 
-// Create Member with assign groups
+// 1. Create Member with assign groups
       it('CreateMemberWtihGroups',()=>{
 
 
@@ -62,7 +62,7 @@ describe('AccountCreation', ()=>{
        
         
         
-         // Account creation without assigning groups
+         // 2. Account creation without assigning groups
 
          it('createMemberWithoutGroups', ()=>{
           
@@ -91,7 +91,7 @@ describe('AccountCreation', ()=>{
           })
 
 
-          //While clicking on back, wheather all team member details that were entered before, still they retain or not
+          //3. While clicking on back, wheather all team member details that were entered before, still they retain or not
           
           it('filledDetailsShouldRetainClickBack', ()=>{
 
@@ -128,7 +128,7 @@ describe('AccountCreation', ()=>{
           })
 
 
-          //Click on yes in cancel alert, It should navigate to view member page
+          //4. Click on yes in cancel alert, It should navigate to view member page
 
           it('clickYesInCancelAlert',()=>{
             cy.reload();
@@ -152,7 +152,7 @@ describe('AccountCreation', ()=>{
           })
 
 
-          //click on No in cancel alert, check the control should be in the same page
+          //5. click on No in cancel alert, check the control should be in the same page
 
           it('clickNoInCancelAlert',()=>{
             cy.reload();
@@ -175,7 +175,7 @@ describe('AccountCreation', ()=>{
 
 
 })
-            //click on cross button in cancel alert, check the control should be in the same page
+            //6. click on cross button in cancel alert, check the control should be in the same page
 
           it('clickCrossBtnInCancelAlert',()=>{
             cy.reload();
@@ -197,7 +197,7 @@ describe('AccountCreation', ()=>{
             testMembers.TeamMemberInfoasset();
 
 })
-             //While clicking on yes on cancel in Assign to department page, check it navigates to team member page
+      //7. While clicking on yes on cancel in Assign to department page, check it navigates to team member page
           
           it('CancelInAssignDepartmentPage', ()=>{
 
@@ -223,7 +223,7 @@ describe('AccountCreation', ()=>{
             testMembers.viewPageAssertion();
 
 })
-            //While clicking on No on cancel in Assign to department page, check the control is in the same page
+            //8. While clicking on No on cancel in Assign to department page, check the control is in the same page
           
           it('noInCancelInAssignDepartmentPage', ()=>{
 
@@ -250,7 +250,7 @@ describe('AccountCreation', ()=>{
 
 })
 
-            //While clicking on cross button on cancel in Assign to department page, check the control is in the same page
+            //9. While clicking on cross button on cancel in Assign to department page, check the control is in the same page
           
           it('crossBtnInCancelInAssignDepartmentPage', ()=>{
 
@@ -278,7 +278,7 @@ describe('AccountCreation', ()=>{
 })
 
 
-           // click on save without entering data, check invalid-feedback appear or not
+           //10. click on save without entering data, check invalid-feedback appear or not
 
            it('clickSaveWithoutEnteringData', ()=>{
 
@@ -301,7 +301,7 @@ describe('AccountCreation', ()=>{
            })
 
 
-           //If email is already exist in this firm, check whether error message appear or not
+           //11. If email is already exist in this firm, check whether error message appear or not
 
            it('emailExistInTheFirm',()=>{
 
@@ -325,7 +325,7 @@ describe('AccountCreation', ()=>{
            })
 
 
-           //If email and confirm email is mismatch error will appear.
+           //12. If email and confirm email is mismatch error will appear.
            it('emailConfirmEmailMismatch', ()=> {
            cy.reload();
             testMembers.groupsIconClick();
@@ -347,7 +347,7 @@ describe('AccountCreation', ()=>{
 
 
 
-          // check wheather search box is working or not
+          // 13. check wheather search box is working or not
           it('checkSearchBox',()=>{
 
             cy.reload();
@@ -371,7 +371,7 @@ describe('AccountCreation', ()=>{
 
           })
 
-          //Clicking on Add Team members button in success popup
+          //14. Clicking on Add Team members button in success popup
 
           it('addTeamMemberBtn',()=>{
 
@@ -404,7 +404,7 @@ describe('AccountCreation', ()=>{
             testMembers.TeamMemberInfoasset();
           })
 
-          // Check the email and designation after creating a team member
+          //15. Check the email and designation after creating a team member
 
           it('emailDesignationCheck', ()=>{
 
@@ -430,9 +430,10 @@ describe('AccountCreation', ()=>{
             testMembers.designationAssertionInViewTMPage(data.memberDetails14.designation);
 
           })
+           // 16. Check the department and default Rate
 
 
-          it.only('departmentsAndDefaultRatecheck', ()=>{
+          it('departmentsAndDefaultRatecheck', ()=>{
 
             var selectDepts2 = [
               data.selectDepartments2.Dept1,

@@ -24,6 +24,8 @@ describe('editMemberInfo', ()=>{
 
   });
 });
+
+      // 1. Edit the Member name only
        it('editMemberName',()=>{
 
         viewTeamMember.groupsIconClick();
@@ -39,6 +41,8 @@ describe('editMemberInfo', ()=>{
         viewTeamMember.teamMemberAssertion(data.memberDetails.nameAssert);
 
        })
+
+       //2. Edit the Designation only
 
        it('editMemberDesignation',()=>{
 
@@ -56,7 +60,9 @@ describe('editMemberInfo', ()=>{
 
        })
 
-       it.only('editMemberEmail',()=>{
+       // 3. edit the email and confirm email
+
+       it('editMemberEmail',()=>{
 
         viewTeamMember.groupsIconClick();
         viewTeamMember.viewTeamMemberTabClick();
@@ -70,18 +76,382 @@ describe('editMemberInfo', ()=>{
         viewTeamMember.crossBtnEditMemberInfoClick();
         viewTeamMember.emailAssertionInViewTMPage(data.memberDetails2.changeEmail);
        
-      
-
        })
 
+       // 4. Edit the default Rate
 
-          
+       it('editDefaultRate',()=>{
+
+        viewTeamMember.groupsIconClick();
+        viewTeamMember.viewTeamMemberTabClick();
+        viewTeamMember.searchBarViewTM(data.memberDetails3.tmName);
+        viewTeamMember.actionBtnClick();
+        cy.wait(2000);
+        viewTeamMember.editMemberInfoClick();
+        viewTeamMember.editDefaultRate(data.memberDetails3.defaultRate);
+        viewTeamMember.saveBtnEditMemberInfo();
+        viewTeamMember.crossBtnEditMemberInfoClick();
+        cy.wait(2000);
+        viewTeamMember.DefaultRateAssertionInViewTMPage(data.memberDetails3.defaultRate);
+
+       
+       })
+
+       // 5. enter the valid email id
 
 
+       it('validEmailErrorMsg',()=>{
+
+        viewTeamMember.groupsIconClick();
+        viewTeamMember.viewTeamMemberTabClick();
+        viewTeamMember.searchBarViewTM(data.memberDetails4.tmName);
+        viewTeamMember.actionBtnClick();
+        cy.wait(2000);
+        viewTeamMember.editMemberInfoClick();
+        viewTeamMember.editEmail(data.memberDetails4.changeEmail);
+        viewTeamMember.saveBtnEditMemberInfo();
+        viewTeamMember.validErrorMsgAssert();
+
+        
+       
+       })
+       // 6. email and confirm email mismatch error
+
+       it('emailMismatchError',()=>{
+
+        viewTeamMember.groupsIconClick();
+        viewTeamMember.viewTeamMemberTabClick();
+        viewTeamMember.searchBarViewTM(data.memberDetails4.tmName);
+        cy.wait(2000);
+        viewTeamMember.actionBtnClick();
+        cy.wait(2000);
+        viewTeamMember.editMemberInfoClick();
+        viewTeamMember.editEmail(data.memberDetails4.changeEmail);
+        viewTeamMember.saveBtnEditMemberInfo();
+        viewTeamMember.emailMismatchErrorAssert();
+
+        
+       })
+
+       //7. Edit the default currency
+
+       it('editDefaultCurrency',()=>{
+        cy.reload();
+        viewTeamMember.groupsIconClick();
+        viewTeamMember.viewTeamMemberTabClick();
+        viewTeamMember.searchBarViewTM(data.memberDetails5.tmName);
+        viewTeamMember.actionBtnClick();
+        cy.wait(2000);
+        viewTeamMember.editMemberInfoClick();
+        viewTeamMember.editCurrency(data.memberDetails5.defaultCurrency);
+        viewTeamMember.saveBtnEditMemberInfo();
+        viewTeamMember.crossBtnEditMemberInfoClick();
+        cy.wait(2000);
+        viewTeamMember.searchBarViewTM(data.memberDetails5.tmName);
+        viewTeamMember.actionBtnClick();
+        cy.wait(2000);
+        viewTeamMember.editMemberInfoClick();
+        viewTeamMember.defaultCurrencyAssertionEditMemberInfo(data.memberDetails5.defaultCurrency);
+ 
+       })
+
+       
+
+       // 8. without filling name, name is required message appears
+
+       it('nameRequiredErrorAppear',()=>{
+        cy.reload();
+        viewTeamMember.groupsIconClick();
+        viewTeamMember.viewTeamMemberTabClick();
+        viewTeamMember.searchBarViewTM(data.memberDetails6.tmName);
+        viewTeamMember.actionBtnClick();
+        cy.wait(2000);
+        viewTeamMember.editMemberInfoClick();
+        viewTeamMember.clearNameText();
+        viewTeamMember.saveBtnEditMemberInfo();
+        viewTeamMember.nameRequiredErrorAppear();
+        
 
 
-          
+      
+
          })
+
+         // 9. without filling designation, designation is required message appears
+
+         it('designaionRequiredErrorAppear',()=>{
+          cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails7.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(2000);
+          viewTeamMember.editMemberInfoClick();
+          viewTeamMember.cleardesignation();
+          viewTeamMember.saveBtnEditMemberInfo();
+          viewTeamMember.designationRequiredErrorMsg();
+          
+        })
+
+        // 10. without filling email, email is required message appears
+        it('emailRequiredErrorAppear',()=>{
+          cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails8.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(2000);
+          viewTeamMember.editMemberInfoClick();
+          viewTeamMember.clearEmail();
+          viewTeamMember.saveBtnEditMemberInfo();
+          viewTeamMember.emailRequiredErrorMsg();
+          
+        })
+
+        // 11. without filling default rate, default rate is required message appears
+
+        it('defaultRateRequiredErrorAppear',()=>{
+          cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails9.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(2000);
+          viewTeamMember.editMemberInfoClick();
+          viewTeamMember.clearDefaultRate();
+          viewTeamMember.saveBtnEditMemberInfo();
+          viewTeamMember.defaultRateRequiredErrorMsg();
+          
+        })
+
+        // 12. Clicking on cancel in Edit member Info, It navigates to view team member page
+
+        it('clickOnCancelInEditMemberInfo',()=>{
+          cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails10.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(2000);
+          viewTeamMember.editMemberInfoClick();
+          viewTeamMember.cancelBtnEditMemberInfo();
+          viewTeamMember.viewPageAssertion();
+        })
+
+        // 13. enter an existing email id in edit member Info
+
+        it('editMemberEmail',()=>{
+
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails2.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(2000);
+          viewTeamMember.editMemberInfoClick();
+          viewTeamMember.editEmail(data.memberDetails15.changeEmail);
+          viewTeamMember.editConfirmEmail(data.memberDetails15.changeConfirmEmail);
+          viewTeamMember.saveBtnEditMemberInfo();
+          viewTeamMember.crossBtnEditMemberInfoClick();
+          viewTeamMember.viewPageAssertion();
+          viewTeamMember.saveBtnEditMemberInfo();
+         
+         })
+
+        //14. Clicking on save on update Department Access - select new Departments
+        it('afterSelectingDepartAndSave', ()=>{
+
+          var selectDepts = [
+            data.selectDepartments.Dept1,
+            data.selectDepartments.Dept2,
+          ];
+
+          cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails11.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(2000);
+          viewTeamMember.updateDepartmentAccessClick();
+          cy.wait(2000);
+          viewTeamMember.SelectDepts(selectDepts);
+          viewTeamMember.saveBtnUpdateDepartClick();
+          viewTeamMember.departmentsAssertionInViewTMPage(data.memberDetails11.Department1);
+          viewTeamMember.departmentsAssertionInViewTMPage(data.memberDetails11.Department2);
+
+
+        })
+
+        //15. unselect department and click on save
+
+        it('afterUnselectingDepartmentAndSave', ()=>{
+
+          var unSelectDepts = [
+            data.unSelectDepartments.Dept1,
+            data.unSelectDepartments.Dept2,
+          ];
+
+          cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails12.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(2000);
+          viewTeamMember.updateDepartmentAccessClick();
+          cy.wait(2000);
+          viewTeamMember.unSelectDepts(unSelectDepts);
+          viewTeamMember.saveBtnUpdateDepartClick();
+          viewTeamMember.unselectDeptAssertionInViewTMPage(data.memberDetails12.Department1);
+          viewTeamMember.unselectDeptAssertionInViewTMPage(data.memberDetails12.Department2);
+        })
+
+
+        // 16. click on cancel, after selecting department
+
+        it('afterSelectingDepartAndSave', ()=>{
+
+          var selectDepts = [
+            data.selectDepartments1.Dept1,
+            data.selectDepartments1.Dept2,
+          ];
+
+          cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails13.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(2000);
+          viewTeamMember.updateDepartmentAccessClick();
+          cy.wait(2000);
+          viewTeamMember.SelectDepts(selectDepts);
+          viewTeamMember.cancelBtnUpdateDeptAccess();
+          viewTeamMember.unselectDeptAssertionInViewTMPage(data.memberDetails13.Department1);
+          viewTeamMember.unselectDeptAssertionInViewTMPage(data.memberDetails13.Department2);
+
+        })
+
+
+        //17. Without seleting department click on cancel
+
+        it('afterSelectingDepartAndSave', ()=>{
+
+        cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails14.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(2000);
+          viewTeamMember.updateDepartmentAccessClick();
+          cy.wait(2000);
+          viewTeamMember.cancelBtnUpdateDeptAccess();
+          viewTeamMember.viewPageAssertion();
+
+
+        })
+        
+        // 18. Reset Password with No
+        it('resetPasswordWithNo', ()=>{
+
+          cy.reload();
+            viewTeamMember.groupsIconClick();
+            viewTeamMember.viewTeamMemberTabClick();
+            viewTeamMember.searchBarViewTM(data.memberDetails16.tmName);
+            viewTeamMember.actionBtnClick();
+            cy.wait(2000);
+            viewTeamMember.resetPasswordClick();
+            viewTeamMember.resetPasswordWithNoClick();
+            viewTeamMember.viewPageAssertion();
+
+        })
+
+        // 19.Reset Password with Yes
+        it('resetPasswordWithYes', ()=>{
+
+          cy.reload();
+            viewTeamMember.groupsIconClick();
+            viewTeamMember.viewTeamMemberTabClick();
+            viewTeamMember.searchBarViewTM(data.memberDetails17.tmName);
+            viewTeamMember.actionBtnClick();
+            cy.wait(2000);
+            viewTeamMember.resetPasswordClick();
+            viewTeamMember.resetPasswordWithYesClick();
+            viewTeamMember.viewPageAssertion();
+
+        })
+
+
+        //20.  Reset Password with cross button
+        it('resetPasswordWithCross', ()=>{
+
+          cy.reload();
+            viewTeamMember.groupsIconClick();
+            viewTeamMember.viewTeamMemberTabClick();
+            viewTeamMember.searchBarViewTM(data.memberDetails18.tmName);
+            viewTeamMember.actionBtnClick();
+            cy.wait(2000);
+            viewTeamMember.resetPasswordClick();
+            viewTeamMember.crossBtnClickInRestPassword();
+            viewTeamMember.viewPageAssertion();
+
+
+      })
+
+      // 21. delete Member with No
+      it.only('deleteMemberWithNo', ()=>{
+
+        cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails19.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(5000);
+          viewTeamMember.deleteMemberOptionClick();
+          viewTeamMember.deleteWithNoClick();
+          viewTeamMember.viewPageAssertion();
+
+      })
+
+      // 22. delete Member with cross button
+      it.only('deleteWithCross', ()=>{
+
+        cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails20.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(5000);
+          viewTeamMember.deleteMemberOptionClick();
+          viewTeamMember.deleteWithCrossBtnClick();
+          viewTeamMember.viewPageAssertion();
+
+    })
+
+      // 23. Delete Member with Yes
+      it.only('deleteMemberWithYes', ()=>{
+
+        cy.reload();
+          viewTeamMember.groupsIconClick();
+          viewTeamMember.viewTeamMemberTabClick();
+          viewTeamMember.searchBarViewTM(data.memberDetails21.tmName);
+          viewTeamMember.actionBtnClick();
+          cy.wait(5000);
+          viewTeamMember.deleteMemberOptionClick();
+          viewTeamMember.deleteMemberWithYesClick();
+          viewTeamMember.viewPageAssertion();
+
+      })
+
+
+      
+  })
+
+        
+
+
+
+
+
+
+      
 
 
 
